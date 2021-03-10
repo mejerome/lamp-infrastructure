@@ -26,4 +26,4 @@ Steps:
 3. Create ansible galaxy install requirement file
 4. Create playbooks for each of the node sets
    - create web playbook
-   - create haproxy playbook
+   - create varnish playbook
