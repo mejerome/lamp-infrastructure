@@ -11,9 +11,8 @@ mysql_databases:
   - name: mycompany_database
     collation: utf8_general_ci
     encoding: utf8
-
-mysql_users:
-  - name: company_user
-    host: "%"
-    password: secret
-    priv: "*.*:ALL"
+# mysql_users:
+#   - name: company_user
+#     host: "%"
+#     password: secret
+#     priv: "*.*:ALL"

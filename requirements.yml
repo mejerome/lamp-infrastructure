@@ -10,5 +10,5 @@
 - src: geerlingguy.mysql
 - src: geerlingguy.memcached
 - src: cloudalchemy.prometheus
-- src: cloudalchemy.node-exporter
+- src: cloudalchemy.node_exporter
 - src: cloudalchemy.grafana

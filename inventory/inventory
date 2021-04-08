@@ -1,4 +1,4 @@
-[nodes]
+[lamp]
 192.168.2.2
 192.168.2.3
 192.168.2.4
@@ -27,6 +27,6 @@
 [lamp-metrics]
 192.168.2.8
 
-[nodes:vars]
+[lamp:vars]
 ansible_user=vagrant
 ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key
