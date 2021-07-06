@@ -1,6 +1,6 @@
 Vagrant.configure("2") do |config|
 
-  config.vm.box = "geerlingguy/centos7"
+  config.vm.box = "ubuntu/focal64"
   config.vm.synced_folder '.', '/vagrant', disabled: true
   config.ssh.username = 'vagrant'
   config.ssh.insert_key = false
@@ -16,7 +16,7 @@ Vagrant.configure("2") do |config|
   # nginx
   config.vm.define "nginx" do |nginx|
     nginx.vm.hostname = "nginx.lab"
-    nginx.vm.network :private_network, ip: "10.0.0.1"
+    nginx.vm.network :private_network, ip: "10.1.1.21"
   end
 
   # # Apache1
