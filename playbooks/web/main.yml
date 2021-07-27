@@ -1,4 +1,4 @@
-- hosts: lamp-web
+- hosts: lamp-www
   become: true
 
   vars_files:

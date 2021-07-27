@@ -48,10 +48,20 @@ Vagrant.configure("2") do |config|
 
   # Memcached
   config.vm.define "memcached" do |memcached|
-    memcached.vm.hostname = "memcached.lab"
+    memcached.vm.hostname = "memcached.test"
     memcached.vm.network :private_network, ip: "192.168.2.7"
+
+    # Run Ansible provisioner once for all VMs at the end.
+    memcached.vm.provision "ansible" do |ansible|
+      ansible.playbook = "configure.yml"
+      ansible.inventory_path = "inventory/inventory"
+      ansible.limit = "all"
+      ansible.extra_vars = {
+        ansible_ssh_user: 'vagrant',
+        ansible_ssh_private_key_file: "~/.vagrant.d/insecure_private_key"
+      }
+    end
   end
-  
   # Grafana metrics
   # config.vm.define "metrics" do |metrics|
   #   metrics.vm.hostname = "metrics.lab"

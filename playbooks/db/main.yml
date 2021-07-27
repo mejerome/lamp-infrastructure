@@ -10,14 +10,14 @@
       set_fact:
         mysql_users:
           - name: mycompany_user
-            host: "{{ groups['lamp-web'][0] }}"
+            host: "{{ groups['lamp-www'][0] }}"
             password: secret
             priv: "*.*:SELECT"
           - name: mycompany_user
-            host: "{{ groups['lamp-web'][1] }}"
+            host: "{{ groups['lamp-www'][1] }}"
             password: secret
             priv: "*.*:SELECT"
-        mysql_replication_master: "{{ groups['lamp-db1'][0] }}"
+        mysql_replication_master: "{{ groups['a4d.lamp.db.1'][0] }}"
 
   roles:
     - geerlingguy.firewall

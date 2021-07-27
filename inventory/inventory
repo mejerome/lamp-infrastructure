@@ -1,16 +1,7 @@
-[lamp]
-192.168.2.2
-192.168.2.3
-192.168.2.4
-192.168.2.5
-192.168.2.6
-192.168.2.7
-192.168.2.8
-
 [lamp-varnish]
 192.168.2.2
 
-[lamp-web]
+[lamp-www]
 192.168.2.3
 192.168.2.4
 
@@ -18,15 +9,8 @@
 192.168.2.5 mysql_replication_role=master
 192.168.2.6 mysql_replication_role=slave
 
-[lamp-db1]
+[a4d.lamp.db.1]
 192.168.2.5
 
 [lamp-memcached]
 192.168.2.7
-
-[lamp-metrics]
-192.168.2.8
-
-[lamp:vars]
-ansible_user=vagrant
-ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key
