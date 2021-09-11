@@ -19,6 +19,9 @@
             priv: "*.*:SELECT"
         mysql_replication_master: "{{ groups['a4d.lamp.db.1'][0] }}"
 
+  # tasks:
+  #   - debug: var=hostvars[inventory_hostname]['ansible_enp0s8']['ipv4']['address']
+
   roles:
-    - geerlingguy.firewall
     - geerlingguy.mysql
+    - geerlingguy.firewall

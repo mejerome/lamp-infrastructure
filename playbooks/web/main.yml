@@ -5,12 +5,19 @@
     - vars.yml
 
   roles:
-    - geerlingguy.firewall
     - geerlingguy.apache
     - geerlingguy.php
     - geerlingguy.apache-php-fpm
+    - geerlingguy.firewall
+    - geerlingguy.php-mysql
+
 
   tasks:
+    - name: Ensure php-cli is installed for ubuntu
+      apt:
+        name: libapache2-mod-php 
+        state: present
+
     - name: Remove file default homepage (delete file)
       file:
         path: /var/www/html/index.html
