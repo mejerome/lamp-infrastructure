@@ -3,7 +3,7 @@
 
 Vagrant.configure("2") do |config|
 
-  config.vm.box = "geerlingguy/ubuntu2004"
+  config.vm.box = "bento/ubuntu-18.04"
   config.vm.synced_folder '.', '/vagrant', disabled: true
   config.ssh.insert_key = false
 
@@ -19,7 +19,8 @@ Vagrant.configure("2") do |config|
   config.vm.define "haproxy" do |haproxy|
     haproxy.vm.hostname = "haproxy.lab"
     # haproxy.vm.network :private_network, ip: "192.168.2.2"
-    haproxy.vm.network :public_network, bridge: "wlp1s0", ip: "10.51.1.138"
+    # haproxy.vm.network :public_network, bridge: "wlp1s0", ip: "10.51.1.138"
+    haproxy.vm.network :public_network
     haproxy.vm.provision :ansible do |ansible|
       ansible.playbook = "playbooks/haproxy/main.yml"
       ansible.inventory_path = "inventory/inventory"
@@ -43,6 +44,11 @@ Vagrant.configure("2") do |config|
   config.vm.define "www2" do |www2|
     www2.vm.hostname = "www2.lab"
     www2.vm.network :private_network, ip: "192.168.2.4"
+    www2.vm.provision :ansible do |ansible|
+      ansible.playbook = "playbooks/web/main.yml"
+      ansible.inventory_path = "inventory/inventory"
+      ansible.limit = "all"
+    end
   end
   
   # MySQL1
@@ -58,27 +64,27 @@ Vagrant.configure("2") do |config|
   end
 
   # MySQL2
-  config.vm.define "db2" do |db2|
-    db2.vm.hostname = "db2.lab"
-    db2.vm.network :private_network, ip: "192.168.2.6"
-  end
+  # config.vm.define "db2" do |db2|
+  #   db2.vm.hostname = "db2.lab"
+  #   db2.vm.network :private_network, ip: "192.168.2.6"
+  # end
 
   # Memcached
-  config.vm.define "memcached" do |memcached|
-    memcached.vm.hostname = "memcached.test"
-    memcached.vm.network :private_network, ip: "192.168.2.7"
+  # config.vm.define "memcached" do |memcached|
+  #   memcached.vm.hostname = "memcached.test"
+  #   memcached.vm.network :private_network, ip: "192.168.2.7"
 
     # Run Ansible provisioner once for all VMs at the end.
-    memcached.vm.provision "ansible" do |ansible|
-      ansible.playbook = "configure.yml"
-      ansible.inventory_path = "inventory/inventory"
-      ansible.limit = "all"
-      ansible.extra_vars = {
-        ansible_ssh_user: 'vagrant',
-        ansible_ssh_private_key_file: "~/.vagrant.d/insecure_private_key"
-      }
-    end
-  end
+  #   memcached.vm.provision "ansible" do |ansible|
+  #     ansible.playbook = "configure.yml"
+  #     ansible.inventory_path = "inventory/inventory"
+  #     ansible.limit = "all"
+  #     ansible.extra_vars = {
+  #       ansible_ssh_user: 'vagrant',
+  #       ansible_ssh_private_key_file: "~/.vagrant.d/insecure_private_key"
+  #     }
+  #   end
+  # end
   # Grafana metrics
   # config.vm.define "metrics" do |metrics|
   #   metrics.vm.hostname = "metrics.lab"

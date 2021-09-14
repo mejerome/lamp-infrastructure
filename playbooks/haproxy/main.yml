@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: haproxy
   become: true
 
   vars:
@@ -22,4 +22,4 @@
     - role: geerlingguy.firewall
 
   tasks:
-    - debug: var=hostvars[inventory_hostname]['ansible_enp0s8']['ipv4']['address']
+    - debug: var=hostvars[inventory_hostname]['ansible_eth1']['ipv4']['address']

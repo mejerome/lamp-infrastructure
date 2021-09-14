@@ -3,7 +3,7 @@ haproxy ansible_host=10.51.1.138
 web1 ansible_host=192.168.2.3
 web2 ansible_host=192.168.2.4
 db1 ansible_host=192.168.2.5
-db2 ansible_host=192.168.2.6
+; db2 ansible_host=192.168.2.6
 memcached ansible_host=192.168.2.7
 
 
@@ -16,7 +16,7 @@ web2
 
 [lamp-db]
 db1 mysql_replication_role=master
-db2 mysql_replication_role=slave
+; db2 mysql_replication_role=slave
 
 [a4d.lamp.db.1]
 db1
