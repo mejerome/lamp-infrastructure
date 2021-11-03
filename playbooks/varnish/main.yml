@@ -6,9 +6,15 @@
     - vars.yml
 
   roles:
-    - geerlingguy.firewall
-    - geerlingguy.repo-epel
     - geerlingguy.varnish
+    - geerlingguy.firewall
+
+  pre_tasks:
+      - name: Update the apt cache
+        apt: update_cache=yes state=latest
+
+      # - name: Upgrade all packages on servers
+      #   apt: upgrade=dist force_apt_get=yes
 
   tasks:
     - name: Copy Varnish default.vcl.
@@ -16,3 +22,5 @@
         src: "templates/default.vcl.j2"
         dest: "/etc/varnish/default.vcl"
       notify: restart varnish
+
+    - debug: var=hostvars[inventory_hostname]['ansible_enp0s8']['ipv4']['address']

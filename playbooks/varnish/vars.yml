@@ -2,7 +2,7 @@
 firewall_allowed_tcp_ports:
   - "22"
   - "80"
-
+varnish_version: "6.5"
 firewall_state: started
 firewall_enabled_at_boot: true
 varnish_use_default_vcl: false
